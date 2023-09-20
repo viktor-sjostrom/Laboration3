@@ -39,5 +39,40 @@ namespace Laboration3.Models
             finally { dbConnection.Close(); }
         }
 
+        public List<Student> GetStudentsWithDataSet(out string errormsg) 
+        {
+            SqlConnection dbConnection = new SqlConnection();
+
+            //Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+            String sqlString = "SELECT * FROM Tbl_Student;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            SqlDataAdapter myAdapter = new SqlDataAdapter(dbCommand);
+            DataSet myDS = new DataSet();
+
+            List<Student> studentList = new List<Student>();
+
+            try
+            {
+                dbConnection.Open();
+
+                myAdapter.Fill(myDS, "myStudent");
+
+                int count = myDS.Tables["myStudent"].Rows.Count;
+                int i = 0;
+
+                if(count > 0)
+                {
+                    while(i < count)
+                    {
+                        Student student = new Student();
+                        student.StudentId = Convert.ToInt32(myDS.Tables["myStudent"].Rows[i]["Student_Id"].ToString());
+                    }
+                }
+            }
+        }
+
     }
 }
