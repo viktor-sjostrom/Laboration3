@@ -17,23 +17,39 @@ namespace Laboration3.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddStudent()
         {
-            Student student = new Student();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddStudent(Student s) 
+        {
             StudentMethod sm = new StudentMethod();
             int i = 0;
             string error = "";
 
-            student.FirstName = "Alice";
-            student.LastName = "Karlsson";
-            student.Email = "alka0101@umu.se";
-
-            i = sm.AddStudent(student,out error);
+            i = sm.AddStudent(s, out error);
             ViewBag.error = error;
             ViewBag.antal = i;
 
+            //redirect to listView:n när den är skapad
+            if(i == 1) { return RedirectToAction(); }
+            else { return View("AddStudent"); }
 
-            return View();
         }
+
+        public IActionResult SelectWithDataSet()
+        {
+            List<Student> studentList = new List<Student>();
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+            //studentList = sm.GetStudentsWithDataSet(out error);
+            ViewBag.error = error;
+            return View(studentList);
+        }
+
     }
 }
