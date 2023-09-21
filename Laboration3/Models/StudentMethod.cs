@@ -73,6 +73,48 @@ namespace Laboration3.Models
             }
         }
 
+        public int Update(Student student, out string errormsg)
+        {
+            //Skapa SqlConnection
+            SqlConnection dbConnection = new SqlConnection();
+
+            //Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+
+            String sqlString = "UPDATE Tbl_Student SET First_Name = @firstname, Last_Name = @lastname, Email = @email WHERE Student_Id = @id;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            dbCommand.Parameters.Add("firstname", SqlDbType.NVarChar, 255).Value = student.FirstName;
+            dbCommand.Parameters.Add("lastname", SqlDbType.NVarChar, 255).Value = student.LastName;
+            dbCommand.Parameters.Add("email", SqlDbType.NVarChar, 255).Value = student.Email;
+            dbCommand.Parameters.Add("id", SqlDbType.Int).Value = student.StudentId;
+
+            try
+            {
+                dbConnection.Open();
+                int i = dbCommand.ExecuteNonQuery();
+                if (i == 1) 
+                { 
+                    errormsg = ""; 
+                }
+                else 
+                { 
+                    errormsg = "Studentens information uppdaterades inte i databasen."; 
+                }
+                return i;
+            }
+            catch (Exception ex)
+            {
+                errormsg = ex.Message;
+                return 0;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+        }
+
         public Student getStudent(int id, out string errormsg)
         {
             //Skapa SqlConnection

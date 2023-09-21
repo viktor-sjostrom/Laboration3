@@ -1,5 +1,6 @@
 ﻿using Laboration3.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 namespace Laboration3.Controllers
 {
@@ -113,6 +114,33 @@ namespace Laboration3.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+            var student = sm.getStudent(id, out error);
+            ViewBag.error = error;
+            if (student != null)
+            {
+                return View(student);
+            }
+
+            return RedirectToAction("SelectWithDataSet");
+        }
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Student s) 
+        {
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+
+            int i = sm.Update(s, out error);
+
+            ViewBag.error = error;
+            return RedirectToAction("SelectWithDataSet");
+        }
 
 
     }
