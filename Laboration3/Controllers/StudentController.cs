@@ -142,6 +142,14 @@ namespace Laboration3.Controllers
             return RedirectToAction("SelectWithDataSet");
         }
 
+        [HttpGet]
+        public IActionResult Filtrering()
+        {
+            
+
+            return View();
+        }
+
 
     }
 }
