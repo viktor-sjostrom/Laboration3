@@ -41,6 +41,34 @@ namespace Laboration3.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            StudentMethod sm = new StudentMethod();
+            List<Student> studentList = new List<Student>();
+            string error = "";
+            studentList = sm.GetStudentsWithDataSet(out error);
+            var student = studentList.FirstOrDefault(s => s.StudentId == id);
+            if(student != null)
+            {
+                return View(student);
+            }
+
+            return RedirectToAction("SelectWithDataSet");
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+            int i = sm.DeleteStudent(id, out error);
+            HttpContext.Session.SetString("antal", i.ToString());
+            return RedirectToAction("SelectWithDataSet");
+
+        }
+
         public IActionResult SelectWithDataSet()
         {
             List<Student> studentList = new List<Student>();

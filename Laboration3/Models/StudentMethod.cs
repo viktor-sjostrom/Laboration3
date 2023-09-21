@@ -39,6 +39,40 @@ namespace Laboration3.Models
             finally { dbConnection.Close(); }
         }
 
+        public int DeleteStudent(int id, out string errormsg)
+        {
+            //Skapa SqlConnection
+            SqlConnection dbConnection = new SqlConnection();
+
+            //Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+            //SqlString och lägg till en student i databasen
+            String sqlString = "DELETE FROM Tbl_Student WHERE Student_Id = @id;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            dbCommand.Parameters.Add("id", SqlDbType.Int).Value = id;
+
+            try
+            {
+                dbConnection.Open();
+                int i = dbCommand.ExecuteNonQuery();
+                if (i == 1) { errormsg = ""; }
+                else { errormsg = "Det raderas ingen student i databasen."; }
+                return i;
+            }
+            catch (Exception ex)
+            {
+                errormsg = ex.Message;
+                return 0;
+            }
+            finally 
+            { 
+                dbConnection.Close(); 
+            }
+        }
+
+
         public List<Student> GetStudentsWithDataSet(out string errormsg) 
         {
             SqlConnection dbConnection = new SqlConnection();
