@@ -36,26 +36,33 @@ namespace Laboration3.Controllers
             ViewBag.antal = i;
 
             //redirect to listView:n när den är skapad
-            if(i == 1) { return RedirectToAction(); }
-            else { return View("AddStudent"); }
+            if(i == 1) 
+            { 
+                return RedirectToAction("SelectWithDataSet"); 
+            }
+            else 
+            { 
+                return View("AddStudent"); 
+            }
 
         }
+
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
             StudentMethod sm = new StudentMethod();
-            List<Student> studentList = new List<Student>();
             string error = "";
-            studentList = sm.GetStudentsWithDataSet(out error);
-            var student = studentList.FirstOrDefault(s => s.StudentId == id);
-            if(student != null)
+            var student = sm.getStudent(id, out error);
+            ViewBag.error = error;
+            if (student != null)
             {
                 return View(student);
             }
 
             return RedirectToAction("SelectWithDataSet");
         }
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -89,6 +96,24 @@ namespace Laboration3.Controllers
             ViewBag.error = error;
             return View(studentList);
         }
+
+
+        public IActionResult Details(int id) 
+        {
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+            var student = sm.getStudent(id, out error);
+            ViewBag.error = error;
+            if (student != null)
+            {
+                return View(student);
+            }
+
+            return RedirectToAction("SelectWithDataSet");
+
+        }
+
+
 
     }
 }

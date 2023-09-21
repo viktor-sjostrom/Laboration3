@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using NuGet.Protocol;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Laboration3.Models
@@ -47,7 +48,7 @@ namespace Laboration3.Models
             //Koppling till SQL Server
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
-            //SqlString och lägg till en student i databasen
+
             String sqlString = "DELETE FROM Tbl_Student WHERE Student_Id = @id;";
             SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
 
@@ -72,6 +73,61 @@ namespace Laboration3.Models
             }
         }
 
+        public Student getStudent(int id, out string errormsg)
+        {
+            //Skapa SqlConnection
+            SqlConnection dbConnection = new SqlConnection();
+
+            //Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+
+            String sqlString = "SELECT * FROM Tbl_Student WHERE Student_Id = @id;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            dbCommand.Parameters.Add("id", SqlDbType.Int).Value = id;
+
+            //Skapa adapter
+            SqlDataAdapter myAdapter = new SqlDataAdapter(dbCommand);
+            DataSet myDS = new DataSet();
+
+            try
+            {
+                dbConnection.Open();
+
+                //Fyller dataset med data i en tabell med namnet myStudent
+                myAdapter.Fill(myDS, "myStudent");
+
+                int count = myDS.Tables["myStudent"].Rows.Count;
+                int i = 0;
+
+                if(count > 0)
+                {
+                    Student student = new Student();
+                    student.StudentId = Convert.ToInt32(myDS.Tables["myStudent"].Rows[i]["Student_Id"].ToString());
+                    student.FirstName = myDS.Tables["myStudent"].Rows[i]["First_Name"].ToString();
+                    student.LastName = myDS.Tables["myStudent"].Rows[i]["Last_Name"].ToString();
+                    student.Email = myDS.Tables["myStudent"].Rows[i]["Email"].ToString();
+
+                    errormsg = "";
+                    return student;
+                }
+                else
+                {
+                    errormsg = "Det hämtas ingen student";
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                errormsg = ex.Message;
+                return null;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+        }
 
         public List<Student> GetStudentsWithDataSet(out string errormsg) 
         {
