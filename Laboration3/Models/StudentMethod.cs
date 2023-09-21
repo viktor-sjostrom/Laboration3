@@ -69,8 +69,79 @@ namespace Laboration3.Models
                     {
                         Student student = new Student();
                         student.StudentId = Convert.ToInt32(myDS.Tables["myStudent"].Rows[i]["Student_Id"].ToString());
+                        student.FirstName = myDS.Tables["myStudent"].Rows[i]["First_Name"].ToString();
+                        student.LastName = myDS.Tables["myStudent"].Rows[i]["Last_Name"].ToString();
+                        student.Email = myDS.Tables["myStudent"].Rows[i]["Email"].ToString();
+
+                        i++;
+                        studentList.Add(student);
                     }
+                    errormsg = "";
+                    return studentList;
+
+                } else
+                {
+                    errormsg = "Det hämtas ingen Student.";
+                    return null;
                 }
+            } catch (Exception e) 
+            { 
+                errormsg = e.Message;
+                return null;
+            }
+            finally 
+            { 
+                dbConnection.Close(); 
+            }
+
+        }
+
+        public List<Student> GetStudentsWithReader(out string errormsg) 
+        {
+            //Skapa SqlConnection
+            SqlConnection dbConnection = new SqlConnection();
+
+            //Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+            //SqlString ochg för att hämta alla personer
+            String sqlString = "SELECT * FROM Tbl_Student;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            //declare the sqlDataReader, which is used in both the try block and the finally block
+            SqlDataReader reader = null;
+
+            List<Student> studentList = new List<Student>();
+
+            errormsg = "";
+
+            try
+            {
+                dbConnection.Open();
+
+                reader = dbCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Student student = new Student();
+                    student.StudentId = Convert.ToInt32(reader["Student_Id"]);
+                    student.FirstName = reader["First_Name"].ToString();
+                    student.LastName = reader["Last_Name"].ToString();
+                    student.Email = reader["Email"].ToString();
+
+                    studentList.Add(student);
+                }
+                reader.Close();
+                return studentList;
+            }
+            catch (Exception e)
+            { 
+                errormsg = e.Message;
+                return null;
+            }
+            finally
+            { 
+                dbConnection.Close(); 
             }
         }
 

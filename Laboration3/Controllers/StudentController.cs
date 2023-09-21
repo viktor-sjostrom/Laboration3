@@ -46,7 +46,18 @@ namespace Laboration3.Controllers
             List<Student> studentList = new List<Student>();
             StudentMethod sm = new StudentMethod();
             string error = "";
-            //studentList = sm.GetStudentsWithDataSet(out error);
+            studentList = sm.GetStudentsWithDataSet(out error);
+            ViewBag.antal = HttpContext.Session.GetString("antal");
+            ViewBag.error = error;
+            return View(studentList);
+        }
+
+        public IActionResult SelectWithReader()
+        {
+            List<Student> studentList = new List<Student>();
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+            studentList = sm.GetStudentsWithReader(out error);
             ViewBag.error = error;
             return View(studentList);
         }

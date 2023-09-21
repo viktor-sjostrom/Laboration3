@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<Laboration3.Models.Student>
 
 @{
-    ViewData["Title"] = "SelectWithDataSet";
+    ViewData["Title"] = "SelectWithReader";
 }
 
-<h1>SelectWithDataSet</h1>
+<h1>SelectWithReader</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
@@ -52,13 +51,3 @@
 }
     </tbody>
 </table>
-
-@if(ViewBag.antal != "")
-{
-    <p>ViewBag.antal innehåller @ViewBag.antal</p>
-}
-@if (ViewBag.error != "")
-{
-    <p>ViewBag.error innehåller @ViewBag.error</p>
-}
-
