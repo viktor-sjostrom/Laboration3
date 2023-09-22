@@ -145,11 +145,71 @@ namespace Laboration3.Controllers
         [HttpGet]
         public IActionResult Filtrering()
         {
-            
+            StudentCourseMethod scm = new StudentCourseMethod();
+            CourseMethod cm = new CourseMethod();
 
-            return View();
+            ViewModelRegistrationCourse myModel = new ViewModelRegistrationCourse
+            {
+                StudentCourseList = scm.GetStudentCourse(out string errormsg),
+                CourseList = cm.GetCourseList(out string errormsg2)
+            };
+            ViewBag.error = @"1: {errormsg} 2: {errormsg2}";
+
+            return View(myModel);
         }
 
+        [HttpGet]
+        public IActionResult Filtrering2()
+        {
+            StudentCourseMethod scm = new StudentCourseMethod();
+            CourseMethod cm = new CourseMethod();
+
+            ViewModelRegistrationCourse myModel = new ViewModelRegistrationCourse
+            {
+                StudentCourseList = scm.GetStudentCourse(out string errormsg),
+                CourseList = cm.GetCourseList(out string errormsg2)
+            };
+
+            List<Course> courseList = new List<Course>();
+            courseList = cm.GetCourseList(out string errormsg3);
+
+            //De går att skicka med en viewdata
+            ViewBag.error = @"1: {errormsg} 2: {errormsg2} 3: {errormsg3}";
+            ViewData["courseList"] = courseList;
+
+            //det går att skicka m en viewbag
+            ViewBag.courseList = courseList;
+
+            return View(myModel);
+        }
+
+        [HttpPost]
+        public IActionResult Filtrering2(string course)
+        {
+            int i = Convert.ToInt32(course);
+            ViewData["Course"] = i;
+
+            StudentCourseMethod scm = new StudentCourseMethod();
+            CourseMethod cm = new CourseMethod();
+
+            ViewModelRegistrationCourse myModel = new ViewModelRegistrationCourse
+            {
+                StudentCourseList = scm.GetStudentCourse(out string errormsg),
+                CourseList = cm.GetCourseList(out string errormsg2)
+            };
+
+            List<Course> courseList = new List<Course>();
+            courseList = cm.GetCourseList(out string errormsg3);
+
+            //De går att skicka med en viewdata
+            ViewBag.error = @"1: {errormsg} 2: {errormsg2} 3: {errormsg3}";
+            ViewData["courseList"] = courseList;
+
+            ViewBag.courseList = courseList;
+            ViewBag.message = course;
+
+            return View(myModel);
+        }
 
     }
 }

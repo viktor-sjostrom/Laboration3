@@ -1,0 +1,59 @@
+﻿@model ViewModelRegistrationCourse
+
+@{
+    ViewData["Title"] = "Filtrering";
+}
+
+<h1>Filtrering</h1>
+
+<div class="row">
+    <div class="form-group col-md-4">
+        <form asp-action="Filtrering">
+            <div class="form-group">
+                <select class="form-control" id="Course" name="Course">
+
+                    @foreach (var course in Model.CourseList)
+                    {
+                        <option value="@course.CourseId">@course.CourseName</option>
+                    }
+
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p class="float-left"><b>Students and courses</b></p>
+
+<table class="table">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Course</th>
+    </tr>
+    @foreach (var studentCourse in Model.StudentCourseList)
+    {
+        <tr>
+            <td>@studentCourse.FirstName</td>
+            <td>@studentCourse.LastName</td>
+            <td>@studentCourse.CourseName</td>
+        </tr>
+    }
+</table>
+
+<p><b>Courses</b></p>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Course</th>
+
+    </tr>
+    @foreach (var course in Model.CourseList)
+    {
+            <tr>
+                <td>@course.CourseId</td>
+                <td>@course.CourseName</td>
+            </tr>
+    }
+</table>
