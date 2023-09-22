@@ -56,12 +56,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxGaWx0cmVyaW5nMi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/vicke/Documents/C\# Umu/Laboration3/Laboration3/Views/Student/Filtrering3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxGaWx0cmVyaW5nMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/vicke/Documents/C\# Umu/Laboration3/Laboration3/Views/Student/SelectWithDataSet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTZWxlY3RXaXRoRGF0YVNldC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/vicke/Documents/C\# Umu/Laboration3/Laboration3/Views/Student/SelectWithReader.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTZWxlY3RXaXRoUmVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vicke/Documents/C\# Umu/Laboration3/Laboration3/Views/Student/Sortering.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTb3J0ZXJpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/vicke/Documents/C\# Umu/Laboration3/Laboration3/Views/_ViewImports.cshtml]

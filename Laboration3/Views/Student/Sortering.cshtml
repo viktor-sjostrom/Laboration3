@@ -1,0 +1,85 @@
+﻿
+@model ViewModelRegistrationCourse
+
+@{
+    int i = 0;
+    if (ViewData["Course"] != null) { i = (int)ViewData["Course"]; }
+    string s = ViewBag.message;
+    if (ViewBag.message != null)
+    {
+
+    }
+    int number = 0;
+    ViewData["Title"] = "Sortering";
+}
+
+<h1>Sortering</h1>
+
+<p><b>Dropdown med lsita från vy-modell</b></p>
+
+<div class="row">
+    <div class="form-group col-md-4">
+        <form asp-action="Filtrering3">
+            <div class="form-group">
+                <select class="form-control" id="Course" name="Course">
+
+                    @foreach (var course in Model.CourseList)
+                    {
+                        @if (course.CourseId != i)
+                        {
+                            <option value="@course.CourseId">@course.CourseName</option>
+                        }
+                        else
+                        {
+                            <option value="@course.CourseId" selected>@course.CourseName</option>
+                        }
+                    }
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Filtrera" class="btn btn-group btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@*<p>Variabel s: @s</p>*@
+
+
+<p><b>Studenter och kurser med lista från vymodellen</b></p>
+
+<table class="table">
+    <tr>
+        <th>
+            <a href="Sortering?sortering=firstname"">
+                Firstname
+                @if(ViewBag.sortera == "firstname")
+                {
+                    if(number%2 == 0)
+                    {
+                        Model.StudentCourseList = Model.StudentCourseList.OrderBy(s => s.FirstName);
+                        number++;
+                        <span>↑</span>
+                    }
+                    else {
+                        Model.StudentCourseList = Model.StudentCourseList.OrderByDescending(s => s.FirstName);
+                        number++;
+                        <span>↓</span>
+                    }
+                }
+            </a>
+        </th>
+        <th>Lastname</th>
+        <th>Course</th>
+    </tr>
+
+    @foreach (var studentCourse in Model.StudentCourseList)
+    {
+            <tr>
+                <td>@studentCourse.FirstName</td>
+                <td>@studentCourse.LastName</td>
+                <td>@studentCourse.CourseName</td>
+            </tr>
+    }
+</table>
+

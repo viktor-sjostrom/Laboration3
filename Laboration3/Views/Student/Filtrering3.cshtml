@@ -1,0 +1,99 @@
+﻿@model ViewModelRegistrationCourse
+
+@{
+    int i = 0;
+    if(ViewData["Course"] != null) { i = (int)ViewData["Course"]; }
+    string s = ViewBag.message;
+    if(ViewBag.message != null)
+    {
+        
+    }
+    ViewData["Title"] = "Filtrering3";
+}
+
+<h1>Filtrering3</h1>
+<p><b>Dropdown med lsita från vy-modell</b></p>
+
+<div class="row">
+    <div class="form-group col-md-4">
+        <form asp-action="Filtrering3">
+            <div class="form-group">
+                <select class="form-control" id="Course" name="Course">
+
+                    @foreach (var course in Model.CourseList)
+                    {
+                        @if (course.CourseId != i)
+                        {
+                            <option value="@course.CourseId">@course.CourseName</option>
+                        } 
+                        else
+                        {
+                            <option value="@course.CourseId" selected>@course.CourseName</option>
+                        }
+                    }
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Filtrera" class="btn btn-group btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@*<p>Variabel s: @s</p>*@
+
+
+<p><b>Studenter och kurser med lista från vymodellen</b></p>
+
+<table class="table">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Course</th>
+    </tr>
+    @foreach (var studentCourse in Model.StudentCourseList)
+    {
+            <tr>
+                <td>@studentCourse.FirstName</td>
+                <td>@studentCourse.LastName</td>
+                <td>@studentCourse.CourseName</td>
+            </tr>
+    }
+</table>
+
+@*<p><b>Kurser - Lista från ViewData</b></p>
+@{
+    List<Course> courseList2 = (List<Course>)ViewData["courseList"];
+}
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Course</th>
+
+    </tr>
+    @foreach (var course in courseList2)
+    {
+            <tr>
+                <td>@course.CourseId</td>
+                <td>@course.CourseName</td>
+            </tr>
+    }
+</table>
+
+<p><b>Kurser - Lista från ViewBag</b></p>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Course</th>
+
+    </tr>
+    @foreach (var course in (List<Course>)ViewBag.courseList)
+    {
+            <tr>
+                <td>@course.CourseId</td>
+                <td>@course.CourseName</td>
+            </tr>
+    }
+</table>*@

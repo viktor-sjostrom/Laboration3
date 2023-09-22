@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace Laboration3.Models
 {
@@ -67,12 +68,46 @@ namespace Laboration3.Models
 
             //Koppling mot SQL Server
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
-            
-            
-            errormsg= string.Empty;
 
-            return null;
+            String sqlString = "SELECT Tbl_Student.First_Name, Tbl_Student.Last_Name, Tbl_Course.Course_Name FROM Tbl_Student INNER JOIN Tbl_Registration ON Tbl_Student.Student_Id = Tbl_Registration.Student_Id INNER JOIN Tbl_Course ON Tbl_Registration.Course_Id = Tbl_Course.Course_Id WHERE Tbl_Course.Course_id = @filterId;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
 
+            dbCommand.Parameters.Add("filterId", SqlDbType.Int). Value = filterId;
+
+            SqlDataReader reader = null;
+
+            List<StudentCourse> studentCourseList = new List<StudentCourse>();
+
+            errormsg = string.Empty;
+
+            try
+            {
+                dbConnection.Open();
+
+                reader = dbCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    StudentCourse sc = new StudentCourse();
+                    sc.FirstName = reader["First_Name"].ToString();
+                    sc.LastName = reader["Last_Name"].ToString();
+                    sc.CourseName = reader["Course_Name"].ToString();
+
+                    studentCourseList.Add(sc);
+                }
+                reader.Close();
+                return studentCourseList;
+
+            }
+            catch (Exception ex)
+            {
+                errormsg = ex.Message;
+                return null;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
         }
     }
 }
