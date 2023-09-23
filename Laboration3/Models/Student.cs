@@ -6,7 +6,7 @@ namespace Laboration3.Models
     {
 
         /*
-         * StudentViewModel???
+         * Added validation to Email, and custom error msg if wrong
          */
 
         [Key]
@@ -18,9 +18,6 @@ namespace Laboration3.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Provide A Email")]
         [EmailAddress(ErrorMessage = "Please Provide A Valid Email Adress")]
         public string Email { get; set;}
-
-
-        //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True
 
     }
 }
