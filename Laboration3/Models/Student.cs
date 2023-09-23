@@ -11,11 +11,12 @@ namespace Laboration3.Models
 
         [Key]
         public int StudentId { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Provide A First Name")]
         public string FirstName { get; set;}
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Provide A Last Name")]
         public string LastName { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Provide A Email")]
+        [EmailAddress(ErrorMessage = "Please Provide A Valid Email Adress")]
         public string Email { get; set;}
 
 
