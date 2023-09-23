@@ -277,7 +277,7 @@ namespace Laboration3.Models
             }
         }
 
-        public List<Student> SearchStudent(string input, out string errormsg)
+        public List<Student> SearchStudents(string input, out string errormsg)
         {
             //Skapa SqlConnection
             SqlConnection dbConnection = new SqlConnection();

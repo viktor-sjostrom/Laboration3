@@ -319,5 +319,35 @@ namespace Laboration3.Controllers
             return View(myModel);
         }
 
+        [HttpGet]
+        public IActionResult Search()
+        {
+            List<Student> studentList = new List<Student>();
+            StudentMethod sm = new StudentMethod();
+            string error = "";
+            studentList = sm.GetStudentsWithReader(out error);
+            ViewBag.error = error;
+            return View(studentList);
+        }
+
+
+        [HttpPost]
+        public IActionResult Search(string input)
+        {
+            StudentMethod sm = new StudentMethod();
+            string error = String.Empty;
+
+            List<Student> students = sm.SearchStudents(input, out string errormsg);
+
+            ViewBag.error = errormsg;
+
+            if(students != null)
+            {
+                return View(students);
+            }
+            
+            return RedirectToAction("SelectWithDataSet");
+        }
+
     }
 }
