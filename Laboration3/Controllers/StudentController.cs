@@ -270,18 +270,48 @@ namespace Laboration3.Controllers
             StudentCourseMethod scm = new StudentCourseMethod();
             CourseMethod cm = new CourseMethod();
 
-            //List<StudentCourse> studentCourseList = scm.GetStudentCourse(out string errormsg);
+            List<StudentCourse> studentCourseList = scm.GetStudentCourse(out string errormsg);
 
-            //if(sortering == "firstname")
-            //{
-            //    studentCourseList = studentCourseList.OrderBy(s => s.FirstName).ToList();
-            //}
+            // Determine the sorting direction based on the current state
+            string currentSortDirection = HttpContext.Session.GetString("SortDirection");
+
+            // Default sorting is ascending
+            bool isAscending = true;
+
+            if (currentSortDirection != null)
+            {
+                isAscending = currentSortDirection == "asc";
+            }
+
+
+            // Pass the sorting direction to the view
+            ViewBag.SortDirection = isAscending ? "asc" : "desc";
+
+            // Sort the student course list based on the sortering parameter and direction
+            if (sortering == "firstname")
+            {
+                if (isAscending)
+                {
+                    studentCourseList = studentCourseList.OrderBy(s => s.FirstName).ToList();
+                    HttpContext.Session.SetString("SortDirection", "desc");
+                }
+                else
+                {
+                    studentCourseList = studentCourseList.OrderByDescending(s => s.FirstName).ToList();
+                    HttpContext.Session.SetString("SortDirection", "asc");
+                }
+            }
+            else
+            {
+                // Default sorting or handle other sorting options
+                // You can add more sorting options here if needed
+            }
 
 
             ViewModelRegistrationCourse myModel = new ViewModelRegistrationCourse
             {
-                //StudentCourseList = studentCourseList,
-                StudentCourseList = scm.GetStudentCourse(out string errormsg),
+                StudentCourseList = studentCourseList,
+                //StudentCourseList = scm.GetStudentCourse(out string errormsg1),
                 CourseList = cm.GetCourseList(out string errormsg2)
             };
 

@@ -1,5 +1,6 @@
 ﻿
 @model ViewModelRegistrationCourse
+@using Microsoft.AspNetCore.Http
 
 @{
     int i = 0;
@@ -53,17 +54,14 @@
         <th>
             <a href="Sortering?sortering=firstname"">
                 Firstname
-                @if(ViewBag.sortera == "firstname")
+                @if (ViewBag.sortera == "firstname")
                 {
-                    if(number%2 == 0)
+                    if ((string)ViewBag.SortDirection == "asc")
                     {
-                        Model.StudentCourseList = Model.StudentCourseList.OrderBy(s => s.FirstName);
-                        number++;
                         <span>↑</span>
                     }
-                    else {
-                        Model.StudentCourseList = Model.StudentCourseList.OrderByDescending(s => s.FirstName);
-                        number++;
+                    else
+                    {
                         <span>↓</span>
                     }
                 }
