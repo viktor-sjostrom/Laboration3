@@ -277,5 +277,57 @@ namespace Laboration3.Models
             }
         }
 
+        public List<Student> SearchStudent(string input, out string errormsg)
+        {
+            //Skapa SqlConnection
+            SqlConnection dbConnection = new SqlConnection();
+
+            //Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+            //SqlString och för att hämta info gällande studenter som matchar input
+            String sqlString = "SELECT * FROM Tbl_Student WHERE First_Name = @input OR Last_name = @input OR Email = @input;";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            dbCommand.Parameters.Add("input", SqlDbType.NVarChar, 255).Value = input;
+
+            //declare the sqlDataReader, which is used in both the try block and the finally block
+            SqlDataReader reader = null;
+
+            List<Student> studentList = new List<Student>();
+
+            errormsg = "";
+
+            try
+            {
+                dbConnection.Open();
+                
+                reader = dbCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Student student = new Student();
+                    student.StudentId = Convert.ToInt32(reader["Student_Id"]);
+                    student.FirstName = reader["First_Name"].ToString();
+                    student.LastName = reader["Last_Name"].ToString();
+                    student.Email = reader["Email"].ToString();
+
+                    studentList.Add(student);
+                }
+                reader.Close();
+                return studentList;
+
+            } catch (Exception e)
+            {
+                errormsg= e.Message;
+                return null;
+            } finally
+            {
+                dbConnection.Close();
+            }
+
+
+        }
+
     }
 }
