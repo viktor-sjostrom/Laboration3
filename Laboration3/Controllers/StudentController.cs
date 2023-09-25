@@ -477,7 +477,6 @@ namespace Laboration3.Controllers
             ImageMethod im = new ImageMethod();
             string errorMessage;
             int rowsAffected = im.AddImagePath(fileName, out errorMessage);
-            //int rowsAffected = im.AddImagePath(filePath, out errorMessage);
 
             if (rowsAffected > 0)
             {
