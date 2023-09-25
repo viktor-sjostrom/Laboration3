@@ -1,6 +1,7 @@
 ﻿using Laboration3.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
+using System.Text;
 
 namespace Laboration3.Controllers
 {
@@ -347,6 +348,93 @@ namespace Laboration3.Controllers
             }
             
             return RedirectToAction("SelectWithDataSet");
+        }
+
+        public IActionResult UploadImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            ImageMethod im = new ImageMethod();
+
+            if (file != null && file.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);
+
+                    var contentType = file.ContentType;
+                    var imageData = memoryStream.ToArray();
+
+                    string errorMessage;
+                    int imageId;
+
+                    int rowsAffected = im.AddImage(imageData, contentType, out errorMessage);
+
+                    if (rowsAffected > 0) // Check if an image was successfully added and an imageId was obtained
+                    {
+                        // Redirect to the "Show" action with the imageId
+                        return RedirectToAction("Show", new {imageId = 1});
+                    }
+                    else
+                    {
+                        // Handle the error message
+                        // You can choose to show it on the view or log it, for example
+                        ViewBag.ErrorMessage = errorMessage;
+                        return View("SelectWithDataSet");
+                    }
+                }
+            }
+
+            return View("Index");
+        }
+
+        public IActionResult Show(int imageId)
+        {
+            ImageMethod im = new ImageMethod();
+            string errorMessage;
+            byte[] imageData = im.GetImageData(imageId, out errorMessage);
+
+            if (imageData != null)
+            {
+                string contentType = GetContentTypeBasedOnImageData(imageData);
+
+                // Pass the image data and content type to the view
+                ViewData["ImageContent"] = imageData;
+                ViewData["ImageContentType"] = contentType;
+
+                return View();
+            }
+            else
+            {
+                // Handle the case where no image data is found or an error occurred
+                // You can choose to show an error message or redirect to another view
+                ViewBag.ErrorMessage = errorMessage;
+                return View("Error"); // You can create an "Error" view with the error message
+            }
+        }
+
+        private string GetContentTypeBasedOnImageData(byte[] imageData)
+        {
+            // Check for common image file headers
+            if (imageData.Length >= 2 && imageData[0] == 0xFF && imageData[1] == 0xD8)
+            {
+                return "image/jpeg"; // JPEG header (0xFFD8)
+            }
+            else if (imageData.Length >= 8 && imageData[0] == 0x89 && Encoding.ASCII.GetString(imageData, 1, 3) == "PNG")
+            {
+                return "image/png"; // PNG header (0x89504E47)
+            }
+            else if (imageData.Length >= 6 && Encoding.ASCII.GetString(imageData, 0, 6) == "GIF89a")
+            {
+                return "image/gif"; // GIF header ("GIF89a")
+            }
+
+            // If no recognized header is found, you can return a default content type
+            return "application/octet-stream"; // Default to binary data
         }
 
     }

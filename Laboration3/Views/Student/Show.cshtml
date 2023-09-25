@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewBag.Title = "View Image";
+}
+
+<h2>View Image</h2>
+
+@if (ViewData["ImageContent"] != null && ViewData["ImageContentType"] != null)
+{
+        <img src="data:@ViewData["ImageContentType"] ;base64,@Convert.ToBase64String((byte[])ViewData["ImageContent"])" alt="Image" />
+}
+else
+{
+        <p>No image found.</p>
+}
+
+<br />
+<a href="@Url.Action("Index", "Home")">Back to Home</a>
