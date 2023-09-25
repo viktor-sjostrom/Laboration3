@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bEqMsYGuNomvGm/VSJtlwUx+44w94m+ivRdpj48qK+U=",
+  "Hash": "TXu2R/yY2M2UfOLL88MW/UfIfN5vJp5ai87F2vev/tM=",
   "Source": "Laboration3",
   "BasePath": "_content/Laboration3",
   "Mode": "Default",
@@ -102,6 +102,40 @@
       "OriginalItemSpec": "wwwroot\\image\\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png"
     },
     {
+      "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\2769eb882ebd47b1bf7bb1d9a87479e8_skärmklipp1.png",
+      "SourceId": "Laboration3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\",
+      "BasePath": "_content/Laboration3",
+      "RelativePath": "image/2769eb882ebd47b1bf7bb1d9a87479e8_skärmklipp1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\2769eb882ebd47b1bf7bb1d9a87479e8_skärmklipp1.png"
+    },
+    {
+      "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\323908847d30472cbaf4b50a914e68bd_skärmklipp.png",
+      "SourceId": "Laboration3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\",
+      "BasePath": "_content/Laboration3",
+      "RelativePath": "image/323908847d30472cbaf4b50a914e68bd_skärmklipp.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\323908847d30472cbaf4b50a914e68bd_skärmklipp.png"
+    },
+    {
       "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\329fcc8eae4d493087ad2416dbea078c_skärmklipp1.png",
       "SourceId": "Laboration3",
       "SourceType": "Discovered",
@@ -134,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\655f3bf0c3e64187b554c663436a9b07_osrs-rc_pet.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\7e3b0f0c3e0149378f538a93376e49e2_skärmklipp1.png",
+      "SourceId": "Laboration3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\",
+      "BasePath": "_content/Laboration3",
+      "RelativePath": "image/7e3b0f0c3e0149378f538a93376e49e2_skärmklipp1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\7e3b0f0c3e0149378f538a93376e49e2_skärmklipp1.png"
     },
     {
       "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\a80715f3b24943ec8307c752611b7f83_Sketch_bild.jpg",

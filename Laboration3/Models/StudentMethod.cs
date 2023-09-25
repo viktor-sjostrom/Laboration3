@@ -16,12 +16,13 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
             //SqlString och lägg till en student i databasen
-            String sqlString = "INSERT INTO Tbl_Student (First_Name, Last_Name, Email) VALUES (@firstname, @lastname, @email);";
+            String sqlString = "INSERT INTO Tbl_Student (First_Name, Last_Name, Email, Img_Path) VALUES (@firstname, @lastname, @email, @path);";
             SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
 
             dbCommand.Parameters.Add("firstname", SqlDbType.NVarChar, 255).Value = student.FirstName;
             dbCommand.Parameters.Add("lastname", SqlDbType.NVarChar, 255).Value = student.LastName;
             dbCommand.Parameters.Add("email", SqlDbType.NVarChar, 255).Value = student.Email;
+            dbCommand.Parameters.Add("path", SqlDbType.NVarChar, 255).Value = student.imgPath;
 
             try
             {
@@ -82,13 +83,14 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
 
-            String sqlString = "UPDATE Tbl_Student SET First_Name = @firstname, Last_Name = @lastname, Email = @email WHERE Student_Id = @id;";
+            String sqlString = "UPDATE Tbl_Student SET First_Name = @firstname, Last_Name = @lastname, Email = @email, Img_Path = @path WHERE Student_Id = @id;";
             SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
 
             dbCommand.Parameters.Add("firstname", SqlDbType.NVarChar, 255).Value = student.FirstName;
             dbCommand.Parameters.Add("lastname", SqlDbType.NVarChar, 255).Value = student.LastName;
             dbCommand.Parameters.Add("email", SqlDbType.NVarChar, 255).Value = student.Email;
             dbCommand.Parameters.Add("id", SqlDbType.Int).Value = student.StudentId;
+            dbCommand.Parameters.Add("path", SqlDbType.NVarChar, 255).Value = student.imgPath;
 
             try
             {
@@ -311,6 +313,7 @@ namespace Laboration3.Models
                     student.FirstName = reader["First_Name"].ToString();
                     student.LastName = reader["Last_Name"].ToString();
                     student.Email = reader["Email"].ToString();
+                    student.imgPath = reader["Img_Path"].ToString();
 
                     studentList.Add(student);
                 }

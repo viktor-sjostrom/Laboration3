@@ -473,6 +473,7 @@ namespace Laboration3.Controllers
             }
 
             // Save the image path to the database
+            //Gammal metod som skulle kunna sluta här - Men hela får vara kvar så jag kan återanvända det
             ImageMethod im = new ImageMethod();
             string errorMessage;
             int rowsAffected = im.AddImagePath(fileName, out errorMessage);
