@@ -11,4 +11,16 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\image\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\image\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png" />
+    <None Include="wwwroot\image\655f3bf0c3e64187b554c663436a9b07_osrs-rc_pet.jpg" />
+    <None Include="wwwroot\image\a80715f3b24943ec8307c752611b7f83_Sketch_bild.jpg" />
+    <None Include="wwwroot\image\bf09a4661dbe4d4792b1b3742f54480c_Skärmklipp.PNG" />
+    <None Include="wwwroot\image\f11db3c2dd274a56ac8f27b55d13a25d_osrs-kraken_pet.png" />
+  </ItemGroup>
+
 </Project>

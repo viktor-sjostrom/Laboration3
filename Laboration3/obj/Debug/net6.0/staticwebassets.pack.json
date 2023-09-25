@@ -13,6 +13,34 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png",
+      "PackagePath": "staticwebassets\\image\\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png"
+    },
+    {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\329fcc8eae4d493087ad2416dbea078c_skärmklipp1.png",
+      "PackagePath": "staticwebassets\\image\\329fcc8eae4d493087ad2416dbea078c_skärmklipp1.png"
+    },
+    {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\655f3bf0c3e64187b554c663436a9b07_osrs-rc_pet.jpg",
+      "PackagePath": "staticwebassets\\image\\655f3bf0c3e64187b554c663436a9b07_osrs-rc_pet.jpg"
+    },
+    {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\a80715f3b24943ec8307c752611b7f83_Sketch_bild.jpg",
+      "PackagePath": "staticwebassets\\image\\a80715f3b24943ec8307c752611b7f83_Sketch_bild.jpg"
+    },
+    {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\a870632ba9b2455c80d58e765e9c7a47_skärmklipp1.png",
+      "PackagePath": "staticwebassets\\image\\a870632ba9b2455c80d58e765e9c7a47_skärmklipp1.png"
+    },
+    {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\bf09a4661dbe4d4792b1b3742f54480c_Skärmklipp.PNG",
+      "PackagePath": "staticwebassets\\image\\bf09a4661dbe4d4792b1b3742f54480c_Skärmklipp.PNG"
+    },
+    {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\f11db3c2dd274a56ac8f27b55d13a25d_osrs-kraken_pet.png",
+      "PackagePath": "staticwebassets\\image\\f11db3c2dd274a56ac8f27b55d13a25d_osrs-kraken_pet.png"
+    },
+    {
       "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

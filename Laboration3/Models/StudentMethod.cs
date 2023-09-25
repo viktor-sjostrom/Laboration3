@@ -150,7 +150,7 @@ namespace Laboration3.Models
                     student.FirstName = myDS.Tables["myStudent"].Rows[i]["First_Name"].ToString();
                     student.LastName = myDS.Tables["myStudent"].Rows[i]["Last_Name"].ToString();
                     student.Email = myDS.Tables["myStudent"].Rows[i]["Email"].ToString();
-
+                    student.imgPath = myDS.Tables["myStudent"].Rows[i]["Img_Path"].ToString();
                     errormsg = "";
                     return student;
                 }

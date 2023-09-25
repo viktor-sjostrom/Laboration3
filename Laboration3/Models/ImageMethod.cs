@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
+using System.Net.Mime;
 
 namespace Laboration3.Models
 {
@@ -81,6 +82,35 @@ namespace Laboration3.Models
             {
                 dbConnection.Close();
             }
+        }
+
+        public int AddImagePath (String imgPath, out string errormsg)
+        {
+            // Skapa SqlConnection
+            SqlConnection dbConnection = new SqlConnection();
+
+            // Koppling till SQL Server
+            dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
+
+            // SqlString och lägg till en student i databasen
+            string sqlString = "INSERT INTO [Tbl_Images] (ImagePath) VALUES (@path);";
+            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+
+            dbCommand.Parameters.Add(new SqlParameter("@path", SqlDbType.NVarChar, 255) { Value = imgPath });
+
+            try
+            {
+                dbConnection.Open();
+                int rowsAffected = dbCommand.ExecuteNonQuery();
+                errormsg = rowsAffected == 1 ? "" : "No new image was added to the database.";
+                return rowsAffected;
+            }
+            catch (Exception ex)
+            {
+                errormsg = ex.Message;
+                return 0;
+            }
+            finally { dbConnection.Close(); }
         }
     }
 }

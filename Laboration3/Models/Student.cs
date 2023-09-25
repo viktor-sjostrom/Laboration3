@@ -19,5 +19,7 @@ namespace Laboration3.Models
         [EmailAddress(ErrorMessage = "Please Provide A Valid Email Adress")]
         public string Email { get; set;}
 
+        public string? imgPath { get; set;}
+
     }
 }
