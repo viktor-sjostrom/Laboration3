@@ -2,7 +2,7 @@
 
 namespace Laboration3.Models
 {
-    public class Image
+    public class Imagesss
     {
 
         [Key]

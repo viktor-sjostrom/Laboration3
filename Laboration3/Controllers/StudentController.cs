@@ -15,7 +15,6 @@ namespace Laboration3.Controllers
         public IActionResult List()
         {
             
-            
             return View();
         }
 
