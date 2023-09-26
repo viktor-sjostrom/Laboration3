@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4UjMMWY2QvGlbJR77j9X60Mu9dmgWnVx8K8VLaZ9SSg=",
+  "Hash": "t1HlP+1ayB31Zz9dsbCe6gpvyhtOmr5gYSL+edhFaUo=",
   "Source": "Laboration3",
   "BasePath": "_content/Laboration3",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\08f9df535ea747158fa7703a1ea3544c_osrs-rc_pet.jpg",
+      "SourceId": "Laboration3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\",
+      "BasePath": "_content/Laboration3",
+      "RelativePath": "image/08f9df535ea747158fa7703a1ea3544c_osrs-rc_pet.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\08f9df535ea747158fa7703a1ea3544c_osrs-rc_pet.jpg"
     },
     {
       "Identity": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png",

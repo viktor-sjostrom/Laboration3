@@ -16,13 +16,14 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
             //SqlString och lägg till en student i databasen
-            String sqlString = "INSERT INTO Tbl_Student (First_Name, Last_Name, Email, Img_Path) VALUES (@firstname, @lastname, @email, @path);";
-            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+            SqlCommand dbCommand = new SqlCommand("AddNewStudent", dbConnection);
+            dbCommand.CommandType = CommandType.StoredProcedure;
 
-            dbCommand.Parameters.Add("firstname", SqlDbType.NVarChar, 255).Value = student.FirstName;
-            dbCommand.Parameters.Add("lastname", SqlDbType.NVarChar, 255).Value = student.LastName;
-            dbCommand.Parameters.Add("email", SqlDbType.NVarChar, 255).Value = student.Email;
-            dbCommand.Parameters.Add("path", SqlDbType.NVarChar, 255).Value = student.imgPath;
+            dbCommand.Parameters.Add("@NewFirstName", SqlDbType.NVarChar, 255).Value = student.FirstName;
+            dbCommand.Parameters.Add("@NewLastName", SqlDbType.NVarChar, 255).Value = student.LastName;
+            dbCommand.Parameters.Add("@NewEmail", SqlDbType.NVarChar, 255).Value = student.Email;
+            dbCommand.Parameters.Add("@ImgPath", SqlDbType.NVarChar, 255).Value = student.imgPath;
+
 
             try
             {
@@ -49,11 +50,10 @@ namespace Laboration3.Models
             //Koppling till SQL Server
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
+            SqlCommand dbCommand = new SqlCommand("DeleteStudent", dbConnection);
+            dbCommand.CommandType = CommandType.StoredProcedure;
 
-            String sqlString = "DELETE FROM Tbl_Student WHERE Student_Id = @id;";
-            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
-
-            dbCommand.Parameters.Add("id", SqlDbType.Int).Value = id;
+            dbCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
             try
             {
@@ -83,14 +83,15 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
 
-            String sqlString = "UPDATE Tbl_Student SET First_Name = @firstname, Last_Name = @lastname, Email = @email, Img_Path = @path WHERE Student_Id = @id;";
-            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+            SqlCommand dbCommand = new SqlCommand("UpdateStudents", dbConnection);
+            dbCommand.CommandType = CommandType.StoredProcedure;
 
-            dbCommand.Parameters.Add("firstname", SqlDbType.NVarChar, 255).Value = student.FirstName;
-            dbCommand.Parameters.Add("lastname", SqlDbType.NVarChar, 255).Value = student.LastName;
-            dbCommand.Parameters.Add("email", SqlDbType.NVarChar, 255).Value = student.Email;
-            dbCommand.Parameters.Add("id", SqlDbType.Int).Value = student.StudentId;
-            dbCommand.Parameters.Add("path", SqlDbType.NVarChar, 255).Value = student.imgPath;
+
+            dbCommand.Parameters.Add("@NewEmail", SqlDbType.NVarChar, 255).Value = student.Email;
+            dbCommand.Parameters.Add("@NewFirstName", SqlDbType.NVarChar, 255).Value = student.FirstName;
+            dbCommand.Parameters.Add("@NewLastName", SqlDbType.NVarChar, 255).Value = student.LastName;
+            dbCommand.Parameters.Add("@id", SqlDbType.Int).Value = student.StudentId;
+
 
             try
             {
@@ -115,6 +116,7 @@ namespace Laboration3.Models
             {
                 dbConnection.Close();
             }
+
         }
 
         public Student getStudent(int id, out string errormsg)
@@ -126,10 +128,10 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
 
-            String sqlString = "SELECT * FROM Tbl_Student WHERE Student_Id = @id;";
-            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+            SqlCommand dbCommand = new SqlCommand("GetStudentWithId", dbConnection);
+            dbCommand.CommandType = CommandType.StoredProcedure;
 
-            dbCommand.Parameters.Add("id", SqlDbType.Int).Value = id;
+            dbCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
             //Skapa adapter
             SqlDataAdapter myAdapter = new SqlDataAdapter(dbCommand);
@@ -239,8 +241,10 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
             //SqlString ochg för att hämta alla personer
+            //Hämtar info från en vy
             String sqlString = "SELECT * FROM getAllStudents;";
             //String sqlString = "SELECT * FROM Tbl_Student;";
+
             SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
 
             //declare the sqlDataReader, which is used in both the try block and the finally block
@@ -289,10 +293,11 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
             //SqlString och för att hämta info gällande studenter som matchar input
-            String sqlString = "SELECT * FROM Tbl_Student WHERE First_Name = @input OR Last_name = @input OR Email = @input;";
-            SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
+            //String sqlString = "SELECT * FROM Tbl_Student WHERE First_Name = @input OR Last_name = @input OR Email = @input;";
+            SqlCommand dbCommand = new SqlCommand("SearchForStudents", dbConnection);
+            dbCommand.CommandType = CommandType.StoredProcedure;
 
-            dbCommand.Parameters.Add("input", SqlDbType.NVarChar, 255).Value = input;
+            dbCommand.Parameters.Add("@input", SqlDbType.NVarChar, 255).Value = input;
 
             //declare the sqlDataReader, which is used in both the try block and the finally block
             SqlDataReader reader = null;

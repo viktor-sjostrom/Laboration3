@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\08f9df535ea747158fa7703a1ea3544c_osrs-rc_pet.jpg",
+      "PackagePath": "staticwebassets\\image\\08f9df535ea747158fa7703a1ea3544c_osrs-rc_pet.jpg"
+    },
+    {
       "Id": "C:\\Users\\vicke\\Documents\\C# Umu\\Laboration3\\Laboration3\\wwwroot\\image\\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png",
       "PackagePath": "staticwebassets\\image\\0ab079afaf9742bc9a53a4b3570aa40e_osrs-kraken_pet.png"
     },
