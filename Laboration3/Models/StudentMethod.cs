@@ -239,7 +239,8 @@ namespace Laboration3.Models
             dbConnection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=School_Register;Integrated Security=True";
 
             //SqlString ochg för att hämta alla personer
-            String sqlString = "SELECT * FROM Tbl_Student;";
+            String sqlString = "SELECT * FROM getAllStudents;";
+            //String sqlString = "SELECT * FROM Tbl_Student;";
             SqlCommand dbCommand = new SqlCommand(sqlString, dbConnection);
 
             //declare the sqlDataReader, which is used in both the try block and the finally block
